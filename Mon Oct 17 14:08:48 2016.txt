@@ -1,0 +1,167 @@
+Request:
+POST /cgi-bin/action.php HTTP/1.0
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 7
+
+item1=6
+Begin of Reply: 1476709728425.329102
+End of Response: 1476709728563.738037
+Time: 138.408936
+Response:
+HTTP/1.1 200 OK
+Date: Mon, 17 Oct 2016 13:08:48 GMT
+Server: Apache/2.4.7 (Ubuntu)
+X-Powered-By: PHP/5.5.9-1ubuntu4.20
+Content-Length: 40
+Connection: close
+Content-Type: text/html
+
+<html>
+<body>
+
+ 21<br>
+
+</body>
+</html>
+
+Begin of Reply: 1476709728700.593994
+End of Response: 1476709728826.061035
+Time: 125.467041
+Response:
+HTTP/1.1 200 OK
+Date: Mon, 17 Oct 2016 13:08:48 GMT
+Server: Apache/2.4.7 (Ubuntu)
+X-Powered-By: PHP/5.5.9-1ubuntu4.20
+Content-Length: 40
+Connection: close
+Content-Type: text/html
+
+<html>
+<body>
+
+ 21<br>
+
+</body>
+</html>
+
+Begin of Reply: 1476709728945.376953
+End of Response: 1476709729069.103027
+Time: 123.726074
+Response:
+HTTP/1.1 200 OK
+Date: Mon, 17 Oct 2016 13:08:48 GMT
+Server: Apache/2.4.7 (Ubuntu)
+X-Powered-By: PHP/5.5.9-1ubuntu4.20
+Content-Length: 40
+Connection: close
+Content-Type: text/html
+
+<html>
+<body>
+
+ 21<br>
+
+</body>
+</html>
+
+Begin of Reply: 1476709729188.035889
+End of Response: 1476709729313.261963
+Time: 125.226074
+Response:
+HTTP/1.1 200 OK
+Date: Mon, 17 Oct 2016 13:08:48 GMT
+Server: Apache/2.4.7 (Ubuntu)
+X-Powered-By: PHP/5.5.9-1ubuntu4.20
+Content-Length: 40
+Connection: close
+Content-Type: text/html
+
+<html>
+<body>
+
+ 21<br>
+
+</body>
+</html>
+
+Begin of Reply: 1476709729432.740967
+End of Response: 1476709729558.079102
+Time: 125.338135
+Response:
+HTTP/1.1 200 OK
+Date: Mon, 17 Oct 2016 13:08:49 GMT
+Server: Apache/2.4.7 (Ubuntu)
+X-Powered-By: PHP/5.5.9-1ubuntu4.20
+Content-Length: 40
+Connection: close
+Content-Type: text/html
+
+<html>
+<body>
+
+ 21<br>
+
+</body>
+</html>
+
+Begin of Reply: 1476709729678.429932
+End of Response: 1476709729802.062012
+Time: 123.632080
+Response:
+HTTP/1.1 200 OK
+Date: Mon, 17 Oct 2016 13:08:49 GMT
+Server: Apache/2.4.7 (Ubuntu)
+X-Powered-By: PHP/5.5.9-1ubuntu4.20
+Content-Length: 40
+Connection: close
+Content-Type: text/html
+
+<html>
+<body>
+
+ 21<br>
+
+</body>
+</html>
+
+Begin of Reply: 1476709729921.154053
+End of Response: 1476709730046.685059
+Time: 125.531006
+Response:
+HTTP/1.1 200 OK
+Date: Mon, 17 Oct 2016 13:08:49 GMT
+Server: Apache/2.4.7 (Ubuntu)
+X-Powered-By: PHP/5.5.9-1ubuntu4.20
+Content-Length: 40
+Connection: close
+Content-Type: text/html
+
+<html>
+<body>
+
+ 21<br>
+
+</body>
+</html>
+
+Begin of Reply: 1476709730167.332031
+End of Response: 1476709730291.955078
+Time: 124.623047
+Response:
+HTTP/1.1 200 OK
+Date: Mon, 17 Oct 2016 13:08:49 GMT
+Server: Apache/2.4.7 (Ubuntu)
+X-Powered-By: PHP/5.5.9-1ubuntu4.20
+Content-Length: 40
+Connection: close
+Content-Type: text/html
+
+<html>
+<body>
+
+ 21<br>
+
+</body>
+</html>
+
+Median time of 8 requests: 126.494049 ms

@@ -112,11 +112,14 @@ int main(int argc,char *argv[])
    	timeinfo = localtime(&t);
 
    	char* formatedtime = asctime(timeinfo);
-
    	formatedtime[strlen(formatedtime)-1] = 0;
-   	printf("FT: %s\n", formatedtime );
+
+   	char *fn = malloc(strlen(formatedtime)+5);
+
+   	sprintf(fn, "%s.txt", formatedtime);
+   	printf("output: %s\n", fn );
    	
-    FILE *f = fopen(formatedtime, "w");
+    FILE *f = fopen(fn, "w");
 	if (f == NULL)
 	{
 		printf("Error opening file!\n");
