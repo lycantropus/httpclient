@@ -224,6 +224,9 @@ int main(int argc,char *argv[])
     fprintf(f, "Response:\n%s\n",response);
     }
 
+//TODO add standard deviation
+//TODO add confidence interval
+
     printf("Median time of %d requests: %f ms\n", nofrequests, totalTime/nofrequests );
     fprintf(f, "Median time of %d requests: %f ms\n", nofrequests, totalTime/nofrequests );
     
