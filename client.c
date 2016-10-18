@@ -131,14 +131,15 @@ int main(int argc,char *argv[])
 
 
     int round;
+    int packetnumber;
     for(round=0; round<nofrequests; round++)
     {
     	//reset time counters
     	elapsedTime=0;
     	memset(&tBeginReply, 0, sizeof(tBeginReply));
-    	//tBeginReply=0;
-    	memset(&tEndResponse, 0, sizeof(tBeginReply));
-    	//tEndResponse=0;
+    	memset(&tEndResponse, 0, sizeof(tEndResponse));
+	//reset packetnumber
+	packetnumber=0;
 
     // create the socket 
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -170,7 +171,7 @@ int main(int argc,char *argv[])
     sent = 0;
 
     //get time before first reply
-	gettimeofday(&tBeginReply, NULL);
+//	gettimeofday(&tBeginReply, NULL);
     do {
         bytes = write(sockfd,message+sent,total-sent);
         if (bytes < 0)
@@ -186,6 +187,11 @@ int main(int argc,char *argv[])
     received = 0;
     do {
         bytes = read(sockfd,response+received,total-received);
+	if(packetnumber==0)
+	{
+		packetnumber=1;
+		gettimeofday(&tBeginReply, NULL);
+	}
         if (bytes < 0)
             error("ERROR reading response from socket");
         if (bytes == 0)
