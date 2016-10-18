@@ -3,7 +3,8 @@
 #include <unistd.h> // read, write, close 
 #include <string.h> // memcpy, memset 
 #include <sys/socket.h> // socket, connect 
-#include <time.h>
+#include <time.h>	// time functions
+#include <math.h>	//sqrt, pow
 #include <netinet/in.h> // struct sockaddr_in, struct sockaddr 
 #include <netdb.h> // struct hostent, gethostbyname 
 
@@ -132,6 +133,10 @@ int main(int argc,char *argv[])
 
     int round;
     int packetnumber;
+
+    double deviationArray[nofrequests];
+    memset(deviationArray, 0, nofrequests*sizeof(double));
+
     for(round=0; round<nofrequests; round++)
     {
     	//reset time counters
@@ -209,8 +214,8 @@ int main(int argc,char *argv[])
     close(sockfd);
 
     //process time metrics
-    double startTime = tBeginReply.tv_sec *1000.0;
-    startTime += tBeginReply.tv_usec / 1000.0;
+    double startTime = tBeginReply.tv_sec *1000.0; //sec to ms
+    startTime += tBeginReply.tv_usec / 1000.0;		//usec to ms
 
     double endTime = tEndResponse.tv_sec *1000.0;
     endTime += tEndResponse.tv_usec / 1000.0;
@@ -223,6 +228,10 @@ int main(int argc,char *argv[])
     elapsedTime = endTime - startTime;
     printf("Time: %f\n", elapsedTime);
     fprintf(f, "Time: %f\n", elapsedTime);
+    deviationArray[round]= elapsedTime;
+    //printf("devtime: %f\n", deviationArray[round]);
+    
+
 
     totalTime += elapsedTime;
     // process response 
@@ -230,12 +239,35 @@ int main(int argc,char *argv[])
     fprintf(f, "Response:\n%s\n",response);
     }
 
+    double mean = totalTime/nofrequests;
+    double sd=0.0;
+
+    for(i=0; i<nofrequests; ++i)
+    {
+        sd += pow(deviationArray[i] - mean, 2);
+    }
+
+    double standardDeviation= sqrt(sd/nofrequests);
+
+    //at 95%
+    double intervalLeft = mean - 1.96*standardDeviation/sqrt(nofrequests);
+    double intervalRight = mean + 1.96*standardDeviation/sqrt(nofrequests);
+
+
+
+    //printf("sd :%f\n",standardDeviation);
+
 //TODO add standard deviation
 //TODO add confidence interval
 
-    printf("Median time of %d requests: %f ms\n", nofrequests, totalTime/nofrequests );
-    fprintf(f, "Median time of %d requests: %f ms\n", nofrequests, totalTime/nofrequests );
-    
+    printf("Median time of %d requests: %f ms\n", nofrequests, mean );
+    fprintf(f, "Median time of %d requests: %f ms\n", nofrequests, mean );
+
+    printf("Standard deviation: %f\n",standardDeviation );
+    fprintf(f, "Standard deviation: %f\n",standardDeviation );
+
+    printf("Confidence Interval at 95%%: [%f,%f] \n",intervalLeft, intervalRight );
+    fprintf(f, "Confidence Interval at 95%%: [%f,%f] \n",intervalLeft, intervalRight );
 
     free(message);
 
