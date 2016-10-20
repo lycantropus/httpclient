@@ -8,6 +8,9 @@
 #include <netinet/in.h> // struct sockaddr_in, struct sockaddr 
 #include <netdb.h> // struct hostent, gethostbyname 
 
+
+// Example calls
+// ./client 45.62.226.182 80 GET / 2
 // ./client 45.62.226.182 80 POST /cgi-bin/action.php 2 "item1=6" "Content-Type: application/x-www-form-urlencoded"
 
 void error(const char *msg) { perror(msg); exit(0); }
@@ -96,9 +99,7 @@ int main(int argc,char *argv[])
             strcat(message,argv[6]);                           // body           
     }
 
-    // What are we going to send? 
-
-	
+     
 
     struct timeval tBeginReply, tEndResponse;
     double elapsedTime;
@@ -127,6 +128,7 @@ int main(int argc,char *argv[])
 		exit(1);
 	}
 
+	// What are we going to send?
 	printf("Request:\n%s\n",message);
     fprintf(f, "Request:\n%s\n",message);
 
@@ -165,18 +167,12 @@ int main(int argc,char *argv[])
     // connect the socket 
     if (connect(sockfd,(struct sockaddr *)&serv_addr,sizeof(serv_addr)) < 0)
         error("ERROR connecting");
-
-
-    //loop here for multiple requests?
-
-    // send the request 
     
     
     total = strlen(message);
     sent = 0;
 
-    //get time before first reply
-//	gettimeofday(&tBeginReply, NULL);
+    // send the request 
     do {
         bytes = write(sockfd,message+sent,total-sent);
         if (bytes < 0)
@@ -228,17 +224,16 @@ int main(int argc,char *argv[])
     elapsedTime = endTime - startTime;
     printf("Time: %f\n", elapsedTime);
     fprintf(f, "Time: %f\n", elapsedTime);
-    deviationArray[round]= elapsedTime;
-    //printf("devtime: %f\n", deviationArray[round]);
-    
+    deviationArray[round]= elapsedTime;   
 
 
     totalTime += elapsedTime;
-    // process response 
+
     printf("Response:\n%s\n",response);
     fprintf(f, "Response:\n%s\n",response);
     }
 
+    //statistics
     double mean = totalTime/nofrequests;
     double sd=0.0;
 
@@ -252,14 +247,7 @@ int main(int argc,char *argv[])
     //at 95%
     double intervalLeft = mean - 1.96*standardDeviation/sqrt(nofrequests);
     double intervalRight = mean + 1.96*standardDeviation/sqrt(nofrequests);
-
-
-
-    //printf("sd :%f\n",standardDeviation);
-
-//TODO add standard deviation
-//TODO add confidence interval
-
+    
     printf("Median time of %d requests: %f ms\n", nofrequests, mean );
     fprintf(f, "Median time of %d requests: %f ms\n", nofrequests, mean );
 
